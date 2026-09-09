@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cn5hb4mtercj8"]
+
+[ext_resource type="Texture2D" uid="uid://d1ipxmbgtqmw" path="res://Assests/Sprites/single/UI/LevelBtn.png" id="1_w3teo"]
+[ext_resource type="FontFile" uid="uid://bgvo8vcqd2ox0" path="res://Assests/Fonts/Pencilant Script.ttf" id="2_xi7qd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ckonh"]
+font = ExtResource("2_xi7qd")
+font_size = 100
+font_color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureButton" unique_id=1740772831]
+anchors_preset = -1
+anchor_left = 0.065000005
+anchor_top = 0.116000004
+anchor_right = 0.065000005
+anchor_bottom = 0.116000004
+offset_left = -124.80001
+offset_top = -125.28001
+offset_right = 125.19999
+offset_bottom = 124.71999
+texture_normal = ExtResource("1_w3teo")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="LevelLabel" type="Label" parent="." unique_id=51589663]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -19.5
+offset_right = 20.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_ckonh")
+horizontal_alignment = 1
+vertical_alignment = 1

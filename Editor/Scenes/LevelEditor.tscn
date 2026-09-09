@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://duf6a11egdg78"]
+
+[ext_resource type="Script" uid="uid://dsavchgv15rha" path="res://Editor/Scripts/LevelEditor.gd" id="1_editor_script"]
+[ext_resource type="PackedScene" uid="uid://b1f24sanrm1wx" path="res://Scenes/gameplay/LevelRoot.tscn" id="2_wqmul"]
+[ext_resource type="Script" uid="uid://cr2wmfwjibls2" path="res://Editor/Scripts/EditorSelectionManager.gd" id="3_selection_mgr"]
+[ext_resource type="Script" uid="uid://b7fahm65hr43e" path="res://Editor/Scripts/EditorUI.gd" id="4_ui_script"]
+[ext_resource type="PackedScene" path="res://Editor/UI/EditorPanel.tscn" id="5_editor_panel"]
+
+[node name="LevelEditor" type="Node2D" unique_id=159969152]
+script = ExtResource("1_editor_script")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=784662777]
+position = Vector2(960, 540)
+
+[node name="LevelRoot" parent="." unique_id=2083796425 instance=ExtResource("2_wqmul")]
+
+[node name="EditorSelectionManager" type="Node2D" parent="." unique_id=1405878151]
+script = ExtResource("3_selection_mgr")
+
+[node name="EditorUI" type="CanvasLayer" parent="." unique_id=2033923957]
+layer = 10
+script = ExtResource("4_ui_script")
+
+[node name="EditorPanel" parent="EditorUI" unique_id=742618335 instance=ExtResource("5_editor_panel")]

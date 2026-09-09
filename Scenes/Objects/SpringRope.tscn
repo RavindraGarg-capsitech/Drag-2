@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://drb0ggm7mhd2g"]
+
+[ext_resource type="Script" uid="uid://c4wubk6o23uej" path="res://Scripts/Objects/SpringRope.gd" id="1_xw60k"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_spring"]
+friction = 0.2
+bounce = 1.3
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rope"]
+a = Vector2(-100, 0)
+b = Vector2(100, 0)
+
+[sub_resource type="Gradient" id="Gradient_rope"]
+colors = PackedColorArray(0.0117647, 0.517647, 0.780392, 1, 0.219608, 0.741176, 0.972549, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_contact"]
+size = Vector2(200, 24)
+
+[node name="SpringRope" type="StaticBody2D" unique_id=832658818 groups=["LevelObject", "SpringRope"]]
+collision_mask = 6
+physics_material_override = SubResource("PhysicsMaterial_spring")
+script = ExtResource("1_xw60k")
+object_id = "spring_rope"
+display_name = "Spring Rope"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1165502546]
+shape = SubResource("SegmentShape2D_rope")
+
+[node name="Visual" type="Node2D" parent="." unique_id=1120614074]
+
+[node name="RopeLine" type="Line2D" parent="Visual" unique_id=1909468219]
+points = PackedVector2Array(-100, 0, 100, 0)
+width = 14.0
+gradient = SubResource("Gradient_rope")
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="LeftPeg" type="Polygon2D" parent="Visual" unique_id=764797229]
+position = Vector2(-100, 0)
+color = Color(0.960784, 0.619608, 0.0431373, 1)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[node name="RightPeg" type="Polygon2D" parent="Visual" unique_id=1379735875]
+position = Vector2(100, 0)
+color = Color(0.960784, 0.619608, 0.0431373, 1)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[node name="ContactTrigger" type="Area2D" parent="." unique_id=561664591]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactTrigger" unique_id=513634858]
+shape = SubResource("RectangleShape2D_contact")

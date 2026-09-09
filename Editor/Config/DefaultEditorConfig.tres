@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EditorConfig" format=3 uid="uid://vgre23op8hrr"]
+
+[ext_resource type="Script" uid="uid://cqxn6eildj65f" path="res://Editor/Config/EditorConfig.gd" id="1_config_script"]
+
+[resource]
+script = ExtResource("1_config_script")
+registered_objects = Array[Dictionary]([{}])

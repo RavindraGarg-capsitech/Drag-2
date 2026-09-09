@@ -1,0 +1,167 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://Editor/UI/PropertyPanel.tscn" id="1_property_panel"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.109804, 0.133333, 0.180392, 0.95)
+border_width_left = 2
+border_color = Color(0.2, 0.254902, 0.345098, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.4)
+
+[node name="EditorPanel" type="PanelContainer"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="MainVBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderBox" type="HBoxContainer" parent="MarginContainer/MainVBox"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/MainVBox/HeaderBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "🛠️ LEVEL EDITOR"
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/MainVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Ready"
+autowrap_mode = 2
+
+[node name="HSeparator1" type="HSeparator" parent="MarginContainer/MainVBox"]
+layout_mode = 2
+
+[node name="PaletteSection" type="VBoxContainer" parent="MarginContainer/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PaletteTitle" type="Label" parent="MarginContainer/MainVBox/PaletteSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+text = "📦 OBJECT PALETTE"
+
+[node name="PaletteGrid" type="GridContainer" parent="MarginContainer/MainVBox/PaletteSection"]
+layout_mode = 2
+columns = 2
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/MainVBox"]
+layout_mode = 2
+
+[node name="InspectorSection" type="VBoxContainer" parent="MarginContainer/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="InspectorTitle" type="Label" parent="MarginContainer/MainVBox/InspectorSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+text = "🔍 SELECTED OBJECT"
+
+[node name="PropertyPanel" parent="MarginContainer/MainVBox/InspectorSection" instance=ExtResource("1_property_panel")]
+layout_mode = 2
+
+[node name="ObjectActionBox" type="HBoxContainer" parent="MarginContainer/MainVBox/InspectorSection"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DuplicateButton" type="Button" parent="MarginContainer/MainVBox/InspectorSection/ObjectActionBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "📋 Duplicate"
+
+[node name="DeleteButton" type="Button" parent="MarginContainer/MainVBox/InspectorSection/ObjectActionBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🗑️ Delete"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/MainVBox"]
+layout_mode = 2
+
+[node name="LevelSection" type="VBoxContainer" parent="MarginContainer/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LevelTitle" type="Label" parent="MarginContainer/MainVBox/LevelSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+text = "💾 LEVEL MANAGEMENT"
+
+[node name="LevelIdBox" type="HBoxContainer" parent="MarginContainer/MainVBox/LevelSection"]
+layout_mode = 2
+
+[node name="LevelIdLabel" type="Label" parent="MarginContainer/MainVBox/LevelSection/LevelIdBox"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Level ID:"
+
+[node name="LevelIdInput" type="LineEdit" parent="MarginContainer/MainVBox/LevelSection/LevelIdBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "001"
+placeholder_text = "e.g. 001"
+
+[node name="LevelNameBox" type="HBoxContainer" parent="MarginContainer/MainVBox/LevelSection"]
+layout_mode = 2
+
+[node name="LevelNameLabel" type="Label" parent="MarginContainer/MainVBox/LevelSection/LevelNameBox"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Name:"
+
+[node name="LevelNameInput" type="LineEdit" parent="MarginContainer/MainVBox/LevelSection/LevelNameBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "First Steps"
+placeholder_text = "Level title"
+
+[node name="SaveLoadBox" type="HBoxContainer" parent="MarginContainer/MainVBox/LevelSection"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SaveButton" type="Button" parent="MarginContainer/MainVBox/LevelSection/SaveLoadBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+text = "💾 Save Level"
+
+[node name="LoadButton" type="Button" parent="MarginContainer/MainVBox/LevelSection/SaveLoadBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+text = "📂 Load Level"
+
+[node name="PlayTestButton" type="Button" parent="MarginContainer/MainVBox/LevelSection"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "▶️ PLAY TEST"

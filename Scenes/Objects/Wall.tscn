@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bvejm0050oxet"]
+
+[ext_resource type="Script" uid="uid://cifd1m8yps3h7" path="res://Scripts/Objects/Wall.gd" id="1_n5r65"]
+[ext_resource type="Texture2D" uid="uid://c1yhxou47umav" path="res://Assests/Sprites/single/UI/wall.jpg" id="2_47avc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wall"]
+friction = 0.5
+bounce = 0.4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(200, 40)
+
+[node name="Wall" type="StaticBody2D" unique_id=1896066415 groups=["LevelObject", "Wall"]]
+collision_mask = 6
+physics_material_override = SubResource("PhysicsMaterial_wall")
+script = ExtResource("1_n5r65")
+object_id = "wall"
+display_name = "Static Wall"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=403911116]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Visual" type="Node2D" parent="." unique_id=524782367]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Visual" unique_id=1407016805]
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+texture = ExtResource("2_47avc")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10

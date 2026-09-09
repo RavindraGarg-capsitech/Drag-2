@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://ci4444vnl8r5q"]
+
+[ext_resource type="FontFile" uid="uid://bgvo8vcqd2ox0" path="res://Assests/Fonts/Pencilant Script.ttf" id="1_n443y"]
+
+[resource]
+font = ExtResource("1_n443y")
+font_size = 60
+font_color = Color(0, 0, 0, 1)

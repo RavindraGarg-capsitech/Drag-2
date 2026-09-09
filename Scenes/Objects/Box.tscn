@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://djw801tphpd51"]
+
+[ext_resource type="Script" uid="uid://urc24ro6ipom" path="res://Scripts/Objects/Box.gd" id="1_rueyf"]
+[ext_resource type="Texture2D" uid="uid://oqqwgfvh5djf" path="res://Assests/Sprites/single/UI/box.jpg" id="2_qm080"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_box"]
+friction = 0.6
+bounce = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_box"]
+size = Vector2(80, 80)
+
+[node name="Box" type="RigidBody2D" unique_id=676835649 groups=["Box", "LevelObject"]]
+collision_layer = 4
+collision_mask = 7
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_box")
+script = ExtResource("1_rueyf")
+object_id = "box"
+display_name = "Physics Box"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1843099926]
+shape = SubResource("RectangleShape2D_box")
+
+[node name="Visual" type="Node2D" parent="." unique_id=933078194]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Visual" unique_id=1072664627]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_qm080")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12

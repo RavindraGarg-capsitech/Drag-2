@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[node name="ObjectButton" type="Button"]
+custom_minimum_size = Vector2(170, 44)
+offset_right = 170.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "+ Object"
+alignment = 0
+clip_text = true
