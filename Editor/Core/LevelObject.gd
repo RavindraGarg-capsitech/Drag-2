@@ -10,6 +10,8 @@ signal state_changed
 @export var is_selectable: bool = true
 @export var is_locked: bool = false
 
+var design_position: Vector2 = Vector2.ZERO   # original/base position from the Resource, used to recompute the responsive runtime position
+
 var _initial_transform: Transform2D
 var _initial_properties: Dictionary = {}
 var _is_editor_mode: bool = false
@@ -48,14 +50,15 @@ func get_custom_properties() -> Dictionary:
 	for p in get_property_list():
 		if p.usage & PROPERTY_USAGE_SCRIPT_VARIABLE:
 			var prop_name = p.name
-			if prop_name in ["object_id", "display_name", "is_selectable", "is_locked"] or prop_name.begins_with("_"):
+			if prop_name in ["object_id", "display_name", "is_selectable", "is_locked", "design_position"] or prop_name.begins_with("_"):   # CHANGED: added "design_position"
 				continue
 			props[prop_name] = get(prop_name)
 	return props
 
-## Virtual method: applies dictionary of custom properties to this object.
 func apply_custom_properties(_props: Dictionary) -> void:
 	for prop_name in _props:
+		if prop_name == "design_position":   # ADDED
+			continue                          # ADDED
 		set(prop_name, _props[prop_name])
 
 ## Virtual method: returns approximate local bounding box for selection rendering and hit-testing.

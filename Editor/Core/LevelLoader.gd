@@ -4,6 +4,8 @@ extends RefCounted
 ## Generic level loader that instantiates LevelData resources into any LevelRoot container.
 
 ## Loads a LevelData resource from a file path or LevelData instance into target_root.
+# LevelLoader.gd
+
 static func load_level(level_res_or_path: Variant, target_root: LevelRoot) -> bool:
 	if target_root == null:
 		push_error("LevelLoader: target_root is null")
@@ -29,6 +31,9 @@ static func load_level(level_res_or_path: Variant, target_root: LevelRoot) -> bo
 		
 	# Clear existing objects
 	target_root.clear_level_objects()
+
+	target_root.design_width = level_data.design_width      # ADDED: use this level's actual authored canvas size
+	target_root.design_height = level_data.design_height    # ADDED: instead of LevelRoot's hardcoded default
 	
 	# Instantiate and restore objects
 	for obj_data in level_data.objects:
@@ -39,11 +44,12 @@ static func load_level(level_res_or_path: Variant, target_root: LevelRoot) -> bo
 			push_warning("LevelLoader: Could not instantiate object '%s'" % obj_data.object_id)
 			continue
 			
-		obj.position = obj_data.position
+		obj.design_position = obj_data.position
 		obj.rotation = obj_data.rotation
 		obj.scale = obj_data.scale
 		obj.is_locked = obj_data.is_locked
-		target_root.add_child(obj)
+		target_root.add_child(obj)                                                    # CHANGED: moved earlier, before position is set
+		obj.global_position = target_root.calculate_responsive_position(obj_data.position)  # CHANGED: moved after add_child (see Fix 2)
 		print("[LevelLoader] Property Loaded for ", obj_data.object_id, ": ", obj_data.properties)
 		obj.apply_custom_properties(obj_data.properties)
 		

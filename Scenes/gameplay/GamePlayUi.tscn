@@ -23,6 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_d8jbk")
+expand_mode = 1
 
 [node name="LevelRoot" parent="." unique_id=1318773563 instance=ExtResource("3_e4jfp")]
 
