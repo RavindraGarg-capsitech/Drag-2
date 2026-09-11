@@ -4,98 +4,113 @@ extends Control
 
 @onready var level_container: GridContainer = $ScrollContainer/HBoxContainer/GridContainer
 
+const LEVELS_PATH: String = "res://Resources/Levels/"
+const LEVEL_BUTTON_SCENE: String = "res://Scenes/UI/button/LevelBtn.tscn"
+
 
 func _ready() -> void:
-	print("[LevelMenu] READY")
+	_spawn_level_buttons()
 
-	var level_index: int = 1
 
-	for child in level_container.get_children():
+func _spawn_level_buttons() -> void:
+	for child: Node in level_container.get_children():
+		child.queue_free()
 
-		if child is TextureButton:
+	var directory: DirAccess = DirAccess.open(LEVELS_PATH)
+	if directory == null:
+		printerr("[LevelMenu] Levels folder not found")
+		return
 
-			print("[LevelMenu] Connecting Level ", level_index)
+	var button_scene: PackedScene = load(LEVEL_BUTTON_SCENE)
+	if button_scene == null:
+		printerr("[LevelMenu] Level button scene not found")
+		return
 
-			child.pressed.connect(
-				_on_level_button_pressed.bind(level_index)
-			)
+	var level_files: Array[String] = []
 
-			level_index += 1
+	directory.list_dir_begin()
+
+	var file: String = directory.get_next()
+
+	while file != "":
+		if not directory.current_is_dir():
+			if file.begins_with("Level") and file.ends_with(".res"):
+				level_files.append(file)
+
+		file = directory.get_next()
+
+	directory.list_dir_end()
+	level_files.sort()
+
+	for level_file: String in level_files:
+		var level_number: int = _get_level_number(level_file)
+
+		if level_number > 0:
+			_create_level_button(level_number, button_scene)
+
+
+func _get_level_number(level_file: String) -> int:
+	var number: String = level_file.trim_prefix("Level").trim_suffix(".res")
+
+	return int(number) if number.is_valid_int() else -1
+
+
+func _create_level_button(
+	level_number: int,
+	button_scene: PackedScene
+) -> void:
+
+	var button: TextureButton = button_scene.instantiate() as TextureButton
+
+	if button == null:
+		printerr("[LevelMenu] Invalid Level Button")
+		return
+
+	button.name = "Level%03d" % level_number
+
+	var label: Label = button.find_child("Level_Label", true, false) as Label
+
+	if label:
+		label.text = str(level_number)
+
+	button.pressed.connect(
+		_on_level_button_pressed.bind(level_number)
+	)
+
+	level_container.add_child(button)
 
 
 func _on_level_button_pressed(level_index: int) -> void:
-
-	print("[LevelMenu] CLICKED LEVEL: ", level_index)
-
 	_open_level(level_index)
 
 
 func _open_level(level_index: int) -> void:
+	var level_path: String = (
+		"res://Resources/Levels/Level%s.res"
+		% str(level_index).pad_zeros(3)
+	)
 
-	# Level 1 = Level001.res
-	# Level 2 = Level002.res
-	# Level 3 = Level003.res
-
-	var formatted_id: String = str(level_index).pad_zeros(3)
-
-	var level_path: String = "res://Resources/Levels/Level%s.res" % formatted_id
-
-	print("[LevelMenu] Loading: ", level_path)
-
-
-	# Check if level exists
 	if not ResourceLoader.exists(level_path):
-		printerr("[LevelMenu] Level file not found: ", level_path)
+		printerr("[LevelMenu] Level not found: ", level_path)
 		return
 
+	var level_data: Resource = load(level_path)
 
-	# Load LevelData
-	var level_res: Resource = ResourceLoader.load(level_path)
-
-	if level_res == null:
-		printerr("[LevelMenu] Could not load level: ", level_path)
+	if level_data == null or not level_data is LevelData:
+		printerr("[LevelMenu] Invalid LevelData: ", level_path)
 		return
 
-
-	# Make sure it is LevelData
-	if not level_res is LevelData:
-		printerr("[LevelMenu] Resource is not LevelData: ", level_path)
-		return
-
-
-	print("[LevelMenu] LevelData loaded successfully")
-
-
-	# Load GamePlayUi
 	var game_scene: PackedScene = load(
 		"res://Scenes/gameplay/GamePlayUi.tscn"
 	)
 
 	if game_scene == null:
-		printerr("[LevelMenu] Could not load GamePlayUi.tscn")
+		printerr("[LevelMenu] GamePlayUi not found")
 		return
 
-
-	print("[LevelMenu] GamePlayUi loaded")
-
-
-	# Create GamePlayUi
 	var game_instance: Node = game_scene.instantiate()
 
-
-	# Send LevelData to GamePlayUi
-	game_instance.set(
-		"initial_level_data",
-		level_res
-	)
-
-
-	# Add GamePlayUi to scene
+	game_instance.set("initial_level_data", level_data)
 	get_tree().root.add_child(game_instance)
 
-
-	print("[LevelMenu] GamePlayUi added")
-
-
-	# Remove Level Select Menu
 	queue_free()

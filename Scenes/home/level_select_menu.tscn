@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cyt2s454cpwvc" path="res://Scripts/utils( reusable)/Menu/LevelMenu.gd" id="1_qpmot"]
 [ext_resource type="Texture2D" uid="uid://bl88bwwr4hgnc" path="res://Assests/Sprites/single/UI/Back 2.png" id="2_fmux2"]
-[ext_resource type="PackedScene" uid="uid://cn5hb4mtercj8" path="res://Scenes/UI/button/LevelBtn.tscn" id="3_fmux2"]
 
 [node name="LevelSelectMenu" type="Control" unique_id=551372780]
 layout_mode = 3
@@ -44,21 +43,3 @@ size_flags_horizontal = 3
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 4
-
-[node name="TextureRect" parent="ScrollContainer/HBoxContainer/GridContainer" unique_id=1740772831 instance=ExtResource("3_fmux2")]
-layout_mode = 2
-ignore_texture_size = false
-
-[node name="TextureRect2" parent="ScrollContainer/HBoxContainer/GridContainer" unique_id=1951463586 instance=ExtResource("3_fmux2")]
-layout_mode = 2
-ignore_texture_size = false
-
-[node name="TextureRect3" parent="ScrollContainer/HBoxContainer/GridContainer" unique_id=193901604 instance=ExtResource("3_fmux2")]
-layout_mode = 2
-ignore_texture_size = false
-
-[node name="TextureRect4" parent="ScrollContainer/HBoxContainer/GridContainer" unique_id=1695639990 instance=ExtResource("3_fmux2")]
-layout_mode = 2
-ignore_texture_size = false
-
-[connection signal="pressed" from="ScrollContainer/HBoxContainer/GridContainer/TextureRect" to="." method="_on_texture_rect_pressed"]

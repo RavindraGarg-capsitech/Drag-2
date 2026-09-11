@@ -3,10 +3,6 @@ extends Node2D
 
 ## World container and coordinator for level objects inside the design space.
 
-const DESIGN_WIDTH: float = 1920.0
-const DESIGN_HEIGHT: float = 1080.0
-const DESIGN_SIZE: Vector2 = Vector2(1920.0, 1080.0)
-
 @export var design_width: float = 1920.0
 @export var design_height: float = 1080.0
 
