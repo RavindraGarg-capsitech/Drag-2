@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cv7jywuj28r0i"]
 
-[ext_resource type="Script" uid="uid://boxdqs8me7gc5" path="res://Scripts/Objects/win_panel.gd" id="1_pxfyq"]
+[ext_resource type="Script" uid="uid://bjwcmjhhh7cbb" path="res://Scripts/Controllers/win_panel.gd" id="1_pxfyq"]
 [ext_resource type="Texture2D" uid="uid://bg7rkoxa8a2r7" path="res://Assests/Sprites/Backgrounds/BlurBg.png" id="2_1254j"]
 [ext_resource type="Texture2D" uid="uid://bjgdsi1rdvii5" path="res://Assests/Sprites/Backgrounds/SettingPopUp.png" id="3_d2kbt"]
 [ext_resource type="FontFile" uid="uid://bgvo8vcqd2ox0" path="res://Assests/Fonts/Pencilant Script.ttf" id="4_b5ful"]
@@ -112,7 +112,7 @@ texture_normal = ExtResource("7_i2o4s")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ResumeBtn" type="TextureButton" parent="BlurBg/WinPopUp/ButtonHBox" unique_id=1325942678]
+[node name="NextBtn" type="TextureButton" parent="BlurBg/WinPopUp/ButtonHBox" unique_id=1325942678]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 texture_normal = ExtResource("8_2snl8")
@@ -190,4 +190,4 @@ stretch_mode = 5
 [connection signal="pressed" from="BlurBg/WinPopUp/BackBtn" to="." method="_on_back_btn_pressed"]
 [connection signal="pressed" from="BlurBg/WinPopUp/ButtonHBox/RestartBtn" to="." method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="BlurBg/WinPopUp/ButtonHBox/HomeBtn" to="." method="_on_home_btn_pressed"]
-[connection signal="pressed" from="BlurBg/WinPopUp/ButtonHBox/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="BlurBg/WinPopUp/ButtonHBox/NextBtn" to="." method="_on_next_btn_pressed"]

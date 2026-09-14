@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqnx6bvoamdjy"]
 
-[ext_resource type="Script" uid="uid://cyt2s454cpwvc" path="res://Scripts/Objects/LevelMenu.gd" id="1_qpmot"]
+[ext_resource type="Script" uid="uid://xgyomdy38k26" path="res://Scripts/Controllers/LevelMenu.gd" id="1_qpmot"]
 [ext_resource type="Texture2D" uid="uid://c1c1nt515u62h" path="res://Assests/Sprites/single/UI Button/Back 2.png" id="2_qpmot"]
 
 [node name="LevelSelectMenu" type="Control" unique_id=551372780]

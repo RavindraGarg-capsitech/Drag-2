@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhuiawa3uj2dy"]
 
-[ext_resource type="Script" uid="uid://hws5l2h4kqas" path="res://Scripts/Objects/pause_panel.gd" id="1_ju2n3"]
+[ext_resource type="Script" uid="uid://csrhgplandxwh" path="res://Scripts/Controllers/pause_panel.gd" id="1_ju2n3"]
 [ext_resource type="Texture2D" uid="uid://bg7rkoxa8a2r7" path="res://Assests/Sprites/Backgrounds/BlurBg.png" id="2_ju2n3"]
 [ext_resource type="Texture2D" uid="uid://bjgdsi1rdvii5" path="res://Assests/Sprites/Backgrounds/SettingPopUp.png" id="3_2xduo"]
 [ext_resource type="LabelSettings" uid="uid://ci4444vnl8r5q" path="res://Resources/FontSave/Heading.tres" id="4_whrsq"]
@@ -16,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_ju2n3")
 
 [node name="BlurBg" type="TextureRect" parent="." unique_id=1567155572]

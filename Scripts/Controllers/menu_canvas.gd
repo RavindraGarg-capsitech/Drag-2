@@ -1,164 +1,135 @@
 extends CanvasLayer
 
-
+## MenuCanvas
+## PDF §5 Panel & UI Memory Management: Settings and Level Select are small
+## panels — instantiated on demand when opened, queue_free()'d when the
+## player backs out, never kept resident.
+## PDF §2: navigation out of the whole menu (Play -> Gameplay) goes through
+## GameBus + GameService.scenes, not a direct get_parent().get_parent()
+## reach-around into this node's own tree.
 
 @onready var home_panel: Control = $Background/HomePanel
 @onready var setting_container: Control = $Background/SettingPanel
 @onready var level_select_container: Control = $Background/LevelSelectMenu
-
-
-const SETTINGS_SCENE: String = "res://Scenes/home/setting_panel.tscn"
-const LEVEL_SELECT_SCENE: String = "res://Scenes/home/level_select_menu.tscn"
-
 
 var settings_instance: Control = null
 var level_select_instance: Control = null
 
 
 func _ready() -> void:
-	print("[MenuCanvas] READY")
+	push_error("MenuCanvas", "READY")
 
-	# Initial state
 	home_panel.show()
 	setting_container.hide()
 	level_select_container.hide()
 
+	GameService.scenes.preload_scene(GameConfig.GAMEPLAY_SCENE)
+	GameBus.home_requested.connect(_on_home_requested)
 
-# =========================================================
-# PLAY BUTTON
-# =========================================================
 
 func _on_play_btn_pressed() -> void:
-	print("[MenuCanvas] PLAY PRESSED")
+	push_error("MenuCanvas", "PLAY PRESSED")
 
-	# Home hide
 	home_panel.hide()
-
-	# Settings hide
 	setting_container.hide()
+	_free_settings()
 
-	# Level Select show
 	level_select_container.show()
+	_spawn_level_select()
 
-	# Spawn Level Select only once
-	if level_select_instance == null:
-		_spawn_level_select()
-
-
-# =========================================================
-# SPAWN LEVEL SELECT
-# =========================================================
 
 func _spawn_level_select() -> void:
-	var scene: PackedScene = load(LEVEL_SELECT_SCENE)
+	if level_select_instance != null:
+		return
+
+	var scene: PackedScene = load(GameConfig.LEVEL_SELECT_SCENE)
 
 	if scene == null:
-		printerr(
-			"[MenuCanvas] Level Select scene not found: ",
-			LEVEL_SELECT_SCENE
-		)
+		push_error("MenuCanvas", "Level Select scene not found: " + GameConfig.LEVEL_SELECT_SCENE)
 		return
 
 	level_select_instance = scene.instantiate() as Control
 
 	if level_select_instance == null:
-		printerr(
-			"[MenuCanvas] Level Select root must extend Control"
-		)
+		push_error("MenuCanvas", "Level Select root must extend Control")
 		return
 
 	level_select_container.add_child(level_select_instance)
+	level_select_instance.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
-	# Make spawned scene fill its container
-	level_select_instance.set_anchors_and_offsets_preset(
-		Control.PRESET_FULL_RECT
-	)
-
-	# Connect Back signal
 	if level_select_instance.has_signal("back_pressed"):
-		level_select_instance.back_pressed.connect(
-			_on_level_select_back
-		)
+		level_select_instance.back_pressed.connect(_on_level_select_back)
 
-	print("[MenuCanvas] Level Select spawned")
+	push_error("MenuCanvas", "Level Select spawned")
 
 
-# =========================================================
-# SETTINGS BUTTON
-# =========================================================
+func _free_level_select() -> void:
+	if level_select_instance == null:
+		return
+	level_select_instance.queue_free()
+	level_select_instance = null
+
 
 func _on_setting_btn_pressed() -> void:
-	print("[MenuCanvas] SETTINGS PRESSED")
+	push_error("MenuCanvas", "SETTINGS PRESSED")
 
-	# Home hide
 	home_panel.hide()
-
-	# Level Select hide
 	level_select_container.hide()
+	_free_level_select()
 
-	# Settings show
 	setting_container.show()
+	_spawn_settings()
 
-	# Spawn Settings only once
-	if settings_instance == null:
-		_spawn_settings()
-
-
-# =========================================================
-# SPAWN SETTINGS
-# =========================================================
 
 func _spawn_settings() -> void:
-	var scene: PackedScene = load(SETTINGS_SCENE)
+	if settings_instance != null:
+		return
+
+	var scene: PackedScene = load(GameConfig.SETTINGS_PANEL_SCENE)
 
 	if scene == null:
-		printerr(
-			"[MenuCanvas] Settings scene not found: ",
-			SETTINGS_SCENE
-		)
+		push_error("MenuCanvas", "Settings scene not found: " + GameConfig.SETTINGS_PANEL_SCENE)
 		return
 
 	settings_instance = scene.instantiate() as Control
 
 	if settings_instance == null:
-		printerr(
-			"[MenuCanvas] Settings root must extend Control"
-		)
+		push_error("MenuCanvas", "Settings root must extend Control")
 		return
 
 	setting_container.add_child(settings_instance)
+	settings_instance.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
-	# Make spawned scene fill its container
-	settings_instance.set_anchors_and_offsets_preset(
-		Control.PRESET_FULL_RECT
-	)
-
-	# Connect Back signal
 	if settings_instance.has_signal("back_pressed"):
-		settings_instance.back_pressed.connect(
-			_on_settings_back
-		)
+		settings_instance.back_pressed.connect(_on_settings_back)
 
-	print("[MenuCanvas] Settings spawned")
+	push_error("MenuCanvas", "Settings spawned")
 
 
-# =========================================================
-# LEVEL SELECT BACK
-# =========================================================
+func _free_settings() -> void:
+	if settings_instance == null:
+		return
+	settings_instance.queue_free()
+	settings_instance = null
+
 
 func _on_level_select_back() -> void:
-	print("[MenuCanvas] LEVEL SELECT BACK")
-
+	push_error("MenuCanvas", "LEVEL SELECT BACK")
 	level_select_container.hide()
+	_free_level_select()
 	home_panel.show()
 
-
-# =========================================================
-# SETTINGS BACK
-# =========================================================
 
 func _on_settings_back() -> void:
-	print("[MenuCanvas] SETTINGS BACK")
-
+	push_error("MenuCanvas", "SETTINGS BACK")
 	setting_container.hide()
+	_free_settings()
 	home_panel.show()
+
+
+func _on_home_requested() -> void:
+	home_panel.show()
+	setting_container.hide()
+	level_select_container.hide()
+	_free_settings()
+	_free_level_select()

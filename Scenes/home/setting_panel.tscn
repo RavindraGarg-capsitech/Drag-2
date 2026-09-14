@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cc1gs1txkcelv"]
 
 [ext_resource type="Texture2D" uid="uid://bg7rkoxa8a2r7" path="res://Assests/Sprites/Backgrounds/BlurBg.png" id="1_daadl"]
-[ext_resource type="Script" uid="uid://jo7j0ow1n2dq" path="res://Scripts/Objects/setting_panel.gd" id="1_rxief"]
+[ext_resource type="Script" uid="uid://fa3l5vgucpsl" path="res://Scripts/Controllers/setting_panel.gd" id="1_rxief"]
 [ext_resource type="Texture2D" uid="uid://bjgdsi1rdvii5" path="res://Assests/Sprites/Backgrounds/SettingPopUp.png" id="2_rxief"]
 [ext_resource type="LabelSettings" uid="uid://ci4444vnl8r5q" path="res://Resources/FontSave/Heading.tres" id="3_h8e4e"]
 [ext_resource type="Texture2D" uid="uid://bkt45sge5si4r" path="res://Assests/Sprites/single/UI Button/Close 1.png" id="5_rxief"]
