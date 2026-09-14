@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://cc1gs1txkcelv"]
+
+[ext_resource type="Texture2D" uid="uid://bg7rkoxa8a2r7" path="res://Assests/Sprites/Backgrounds/BlurBg.png" id="1_daadl"]
+[ext_resource type="Script" uid="uid://jo7j0ow1n2dq" path="res://Scripts/Objects/setting_panel.gd" id="1_rxief"]
+[ext_resource type="Texture2D" uid="uid://bjgdsi1rdvii5" path="res://Assests/Sprites/Backgrounds/SettingPopUp.png" id="2_rxief"]
+[ext_resource type="LabelSettings" uid="uid://ci4444vnl8r5q" path="res://Resources/FontSave/Heading.tres" id="3_h8e4e"]
+[ext_resource type="Texture2D" uid="uid://qumbglgexao5" path="res://Assests/Sprites/single/UI/Close 1.png" id="4_l7ete"]
+[ext_resource type="Texture2D" uid="uid://t5agj4xfo64y" path="res://Assests/Sprites/single/UI/SoundOn 2.png" id="5_6xcoj"]
+[ext_resource type="Texture2D" uid="uid://j37y78kiii31" path="res://Assests/Sprites/single/UI/MusicOn 2.png" id="6_qttvn"]
+[ext_resource type="LabelSettings" uid="uid://swujueweufe4" path="res://Resources/FontSave/Text.tres" id="7_ykrwx"]
+
+[node name="SettingPanel" type="Control" unique_id=981853729]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rxief")
+
+[node name="BlurBg" type="TextureRect" parent="." unique_id=1567155572]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_daadl")
+expand_mode = 1
+
+[node name="SettingPopUp" type="TextureRect" parent="BlurBg" unique_id=1355193387]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -250.0
+offset_right = 375.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rxief")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SettingLabel" type="Label" parent="BlurBg/SettingPopUp" unique_id=18682383]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.5
+offset_top = 14.0
+offset_right = 91.5
+offset_bottom = 104.0
+grow_horizontal = 2
+text = "Setting"
+label_settings = ExtResource("3_h8e4e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackBtn" type="TextureButton" parent="BlurBg/SettingPopUp" unique_id=1091795543]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 35.0
+offset_right = 28.0
+offset_bottom = 135.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_l7ete")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SoundHBox" type="HBoxContainer" parent="BlurBg/SettingPopUp" unique_id=1686328828]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -60.0
+offset_right = 145.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="SoundBtn" type="TextureButton" parent="BlurBg/SettingPopUp/SoundHBox" unique_id=553453055]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture_normal = ExtResource("5_6xcoj")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MusicBtn" type="TextureButton" parent="BlurBg/SettingPopUp/SoundHBox" unique_id=656965412]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture_normal = ExtResource("6_qttvn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PrivacyBtn" type="TextureButton" parent="BlurBg/SettingPopUp" unique_id=465172761]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -125.0
+offset_right = 89.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+ignore_texture_size = true
+
+[node name="PrivacyLabel" type="Label" parent="BlurBg/SettingPopUp/PrivacyBtn" unique_id=1507681393]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -19.5
+offset_right = 78.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Privacy Policy"
+label_settings = ExtResource("7_ykrwx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="BlurBg/SettingPopUp/BackBtn" to="." method="_on_back_btn_pressed"]

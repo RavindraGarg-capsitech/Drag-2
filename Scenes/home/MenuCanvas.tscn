@@ -1,18 +1,14 @@
 [gd_scene format=3 uid="uid://bg6utjn72xoc0"]
 
+[ext_resource type="Script" uid="uid://dvjbwxw1wsuqs" path="res://Scripts/Controllers/menu_canvas.gd" id="1_xhyr6"]
 [ext_resource type="Texture2D" uid="uid://b1vclbg1sgkmk" path="res://Assests/Sprites/Backgrounds/Group 6.png" id="2_slfsa"]
 [ext_resource type="Texture2D" uid="uid://dn30uck0ss664" path="res://Assests/Sprites/single/UI/Play 1.png" id="3_5c1cg"]
+[ext_resource type="Texture2D" uid="uid://ccbcqyie0n78h" path="res://Assests/Sprites/Backgrounds/Home Screen.png" id="3_7ab25"]
 [ext_resource type="Texture2D" uid="uid://hg6e2h0p0ja1" path="res://Assests/Sprites/single/UI/settingBtn 1.png" id="4_ylagb"]
-[ext_resource type="Texture2D" uid="uid://bg7rkoxa8a2r7" path="res://Assests/Sprites/Backgrounds/BlurBg.png" id="5_yom22"]
-[ext_resource type="Texture2D" uid="uid://bjgdsi1rdvii5" path="res://Assests/Sprites/Backgrounds/SettingPopUp.png" id="6_sqdbd"]
-[ext_resource type="LabelSettings" uid="uid://ci4444vnl8r5q" path="res://Resources/FontSave/Heading.tres" id="7_t721n"]
-[ext_resource type="Texture2D" uid="uid://qumbglgexao5" path="res://Assests/Sprites/single/UI/Close 1.png" id="8_mpvoi"]
-[ext_resource type="Texture2D" uid="uid://t5agj4xfo64y" path="res://Assests/Sprites/single/UI/SoundOn 2.png" id="9_0ecsc"]
-[ext_resource type="Texture2D" uid="uid://j37y78kiii31" path="res://Assests/Sprites/single/UI/MusicOn 2.png" id="10_wd2b0"]
 [ext_resource type="Texture2D" uid="uid://cqejlyg6hfx2s" path="res://Assests/Sprites/Backgrounds/iPhone 16 & 17 Pro - 15.png" id="11_ncuow"]
-[ext_resource type="LabelSettings" uid="uid://swujueweufe4" path="res://Resources/FontSave/Text.tres" id="11_ry0ta"]
 
 [node name="MenuCanvas" type="CanvasLayer" unique_id=146093381]
+script = ExtResource("1_xhyr6")
 metadata/_edit_vertical_guides_ = [960.0]
 metadata/_edit_horizontal_guides_ = [540.0]
 
@@ -22,6 +18,7 @@ autoscroll = Vector2(-10, 10)
 repeat_times = 2
 
 [node name="BackgroundSprite" type="Sprite2D" parent="MovingBackground" unique_id=1143523156]
+visible = false
 texture = ExtResource("11_ncuow")
 centered = false
 
@@ -31,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_7ab25")
 expand_mode = 1
 
 [node name="HomePanel" type="Control" parent="Background" unique_id=190592018]
@@ -86,8 +84,7 @@ texture_normal = ExtResource("4_ylagb")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SettingPanel" type="Control" parent="Background" unique_id=1028934753]
-visible = false
+[node name="SettingPanel" type="Control" parent="Background" unique_id=1675266598]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,120 +92,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BlurBg" type="TextureRect" parent="Background/SettingPanel" unique_id=1656802360]
+[node name="LevelSelectMenu" type="Control" parent="Background" unique_id=1188889266]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_yom22")
-expand_mode = 1
 
-[node name="SettingPopUp" type="TextureRect" parent="Background/SettingPanel/BlurBg" unique_id=1466424529]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -375.0
-offset_top = -250.0
-offset_right = 375.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_sqdbd")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SettingLabel" type="Label" parent="Background/SettingPanel/BlurBg/SettingPopUp" unique_id=1381249399]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -91.5
-offset_top = 14.0
-offset_right = 91.5
-offset_bottom = 104.0
-grow_horizontal = 2
-text = "Setting"
-label_settings = ExtResource("7_t721n")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BackBtn" type="TextureButton" parent="Background/SettingPanel/BlurBg/SettingPopUp" unique_id=1847693586]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -72.0
-offset_top = 35.0
-offset_right = 28.0
-offset_bottom = 135.0
-grow_horizontal = 0
-texture_normal = ExtResource("8_mpvoi")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="SoundHBox" type="HBoxContainer" parent="Background/SettingPanel/BlurBg/SettingPopUp" unique_id=658795536]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -145.0
-offset_top = -60.0
-offset_right = 145.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 50
-
-[node name="SoundBtn" type="TextureButton" parent="Background/SettingPanel/BlurBg/SettingPopUp/SoundHBox" unique_id=1901366806]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-texture_normal = ExtResource("9_0ecsc")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="MusicBtn" type="TextureButton" parent="Background/SettingPanel/BlurBg/SettingPopUp/SoundHBox" unique_id=1578658957]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-texture_normal = ExtResource("10_wd2b0")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="PrivacyBtn" type="TextureButton" parent="Background/SettingPanel/BlurBg/SettingPopUp" unique_id=899278374]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = -125.0
-offset_right = 89.0
-offset_bottom = -85.0
-grow_horizontal = 2
-grow_vertical = 0
-ignore_texture_size = true
-
-[node name="PrivacyLabel" type="Label" parent="Background/SettingPanel/BlurBg/SettingPopUp/PrivacyBtn" unique_id=702438384]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -78.5
-offset_top = -19.5
-offset_right = 78.5
-offset_bottom = 19.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Privacy Policy"
-label_settings = ExtResource("11_ry0ta")
-horizontal_alignment = 1
-vertical_alignment = 1
+[connection signal="pressed" from="Background/HomePanel/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="Background/HomePanel/SettingBtn" to="." method="_on_setting_btn_pressed"]

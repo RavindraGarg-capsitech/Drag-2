@@ -14,6 +14,3 @@ func _ready() -> void:
 		LevelLoader.load_level(initial_level_data, level_root)
 		for obj in level_root.get_level_objects():
 			obj.set_editor_mode(false)
-
-
-						  # ADDED

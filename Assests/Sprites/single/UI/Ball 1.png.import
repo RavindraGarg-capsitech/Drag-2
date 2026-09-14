@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5h3bdkndk6m"
-path="res://.godot/imported/spring_rope.jpg-5b004d5c2a7381e202d23b0f0bb3d65f.ctex"
+uid="uid://cjlb50251wl2f"
+path="res://.godot/imported/Ball 1.png-f7a6dbe73d27ce10bfe77696e4fc2cd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assests/Sprites/single/UI/spring_rope.jpg"
-dest_files=["res://.godot/imported/spring_rope.jpg-5b004d5c2a7381e202d23b0f0bb3d65f.ctex"]
+source_file="res://Assests/Sprites/single/UI/Ball 1.png"
+dest_files=["res://.godot/imported/Ball 1.png-f7a6dbe73d27ce10bfe77696e4fc2cd7.ctex"]
 
 [params]
 
