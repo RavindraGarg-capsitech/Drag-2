@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1ipxmbgtqmw"
-path="res://.godot/imported/LevelBtn.png-c3655ada01f529192255926bced133b6.ctex"
+uid="uid://bs7nedcdp6sii"
+path="res://.godot/imported/SoundOn 2.png-88af93031575dd9338f17a8342c7c035.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assests/Sprites/single/UI/LevelBtn.png"
-dest_files=["res://.godot/imported/LevelBtn.png-c3655ada01f529192255926bced133b6.ctex"]
+source_file="res://Assests/Sprites/single/UI Button/SoundOn 2.png"
+dest_files=["res://.godot/imported/SoundOn 2.png-88af93031575dd9338f17a8342c7c035.ctex"]
 
 [params]
 

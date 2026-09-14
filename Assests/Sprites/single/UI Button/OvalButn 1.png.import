@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qumbglgexao5"
-path="res://.godot/imported/Close 1.png-4f6e516e427c05399b59f49bb721405c.ctex"
+uid="uid://bcankia70n4m0"
+path="res://.godot/imported/OvalButn 1.png-68ee430480dfb43fc50d0e3158151163.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assests/Sprites/single/UI/Close 1.png"
-dest_files=["res://.godot/imported/Close 1.png-4f6e516e427c05399b59f49bb721405c.ctex"]
+source_file="res://Assests/Sprites/single/UI Button/OvalButn 1.png"
+dest_files=["res://.godot/imported/OvalButn 1.png-68ee430480dfb43fc50d0e3158151163.ctex"]
 
 [params]
 

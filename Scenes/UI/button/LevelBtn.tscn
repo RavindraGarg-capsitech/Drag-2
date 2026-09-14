@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cn5hb4mtercj8"]
 
-[ext_resource type="Texture2D" uid="uid://d1ipxmbgtqmw" path="res://Assests/Sprites/single/UI/LevelBtn.png" id="1_w3teo"]
+[ext_resource type="Texture2D" uid="uid://brffsnef7rsms" path="res://Assests/Sprites/single/UI Button/LevelBtn.png" id="1_w3teo"]
 [ext_resource type="FontFile" uid="uid://bgvo8vcqd2ox0" path="res://Assests/Fonts/Pencilant Script.ttf" id="2_xi7qd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ckonh"]

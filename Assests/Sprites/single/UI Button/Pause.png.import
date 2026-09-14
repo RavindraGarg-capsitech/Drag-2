@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8agr22wax0wl"
-path="res://.godot/imported/OvalButn 1.png-446e075af9b0d0772a7900929e6f98d3.ctex"
+uid="uid://disa5ntuhiefw"
+path="res://.godot/imported/Pause.png-93c3cbd7e6ee2b71c38d45967a641c50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assests/Sprites/single/UI/OvalButn 1.png"
-dest_files=["res://.godot/imported/OvalButn 1.png-446e075af9b0d0772a7900929e6f98d3.ctex"]
+source_file="res://Assests/Sprites/single/UI Button/Pause.png"
+dest_files=["res://.godot/imported/Pause.png-93c3cbd7e6ee2b71c38d45967a641c50.ctex"]
 
 [params]
 

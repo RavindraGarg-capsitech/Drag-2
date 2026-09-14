@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqnx6bvoamdjy"]
 
 [ext_resource type="Script" uid="uid://cyt2s454cpwvc" path="res://Scripts/Objects/LevelMenu.gd" id="1_qpmot"]
-[ext_resource type="Texture2D" uid="uid://bl88bwwr4hgnc" path="res://Assests/Sprites/single/UI/Back 2.png" id="2_fmux2"]
+[ext_resource type="Texture2D" uid="uid://c1c1nt515u62h" path="res://Assests/Sprites/single/UI Button/Back 2.png" id="2_qpmot"]
 
 [node name="LevelSelectMenu" type="Control" unique_id=551372780]
 layout_mode = 3
@@ -18,7 +18,7 @@ offset_left = 48.0
 offset_top = 55.0
 offset_right = 198.0
 offset_bottom = 205.0
-texture_normal = ExtResource("2_fmux2")
+texture_normal = ExtResource("2_qpmot")
 ignore_texture_size = true
 stretch_mode = 5
 

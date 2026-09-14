@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,5 +11,17 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_pause_btn_pressed() -> void:
+func _on_back_btn_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_restart_btn_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_home_btn_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_resume_btn_pressed() -> void:
 	pass # Replace with function body.

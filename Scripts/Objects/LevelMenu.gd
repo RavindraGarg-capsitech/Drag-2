@@ -11,7 +11,7 @@ signal back_pressed
 
 const LEVELS_PATH: String = "res://Resources/Levels/"
 const LEVEL_BUTTON_SCENE: String = "res://Scenes/UI/button/LevelBtn.tscn"
-const GAMEPLAY_SCENE: String = "res://Scenes/gameplay/GamePlayUi.tscn"
+const GAMEPLAY_SCENE: String = "res://Scenes/gameplay/GamePlay.tscn"
 
 
 func _ready() -> void:
