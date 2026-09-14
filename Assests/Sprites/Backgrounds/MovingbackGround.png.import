@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqejlyg6hfx2s"
-path="res://.godot/imported/iPhone 16 & 17 Pro - 15.png-f66eea93bbd55bef4fae53bcf2dd964b.ctex"
+path="res://.godot/imported/MovingbackGround.png-821e323c908c11a95294a30264da0af3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assests/Sprites/Backgrounds/iPhone 16 & 17 Pro - 15.png"
-dest_files=["res://.godot/imported/iPhone 16 & 17 Pro - 15.png-f66eea93bbd55bef4fae53bcf2dd964b.ctex"]
+source_file="res://Assests/Sprites/Backgrounds/MovingbackGround.png"
+dest_files=["res://.godot/imported/MovingbackGround.png-821e323c908c11a95294a30264da0af3.ctex"]
 
 [params]
 
