@@ -1,34 +1,43 @@
 [gd_scene format=3 uid="uid://bvejm0050oxet"]
 
 [ext_resource type="Script" uid="uid://cifd1m8yps3h7" path="res://Scripts/Objects/Wall.gd" id="1_n5r65"]
-[ext_resource type="Texture2D" uid="uid://c1yhxou47umav" path="res://Assests/Sprites/single/UI/wall.jpg" id="2_47avc"]
+[ext_resource type="Texture2D" uid="uid://d1pp1ycqyee62" path="res://Assests/Sprites/single/UI/Line.png" id="2_n5r65"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wall"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n5r65"]
 friction = 0.5
 bounce = 0.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
-size = Vector2(200, 40)
+size = Vector2(200, 9)
 
 [node name="Wall" type="StaticBody2D" unique_id=1896066415 groups=["LevelObject", "Wall"]]
 collision_mask = 6
-physics_material_override = SubResource("PhysicsMaterial_wall")
+physics_material_override = SubResource("PhysicsMaterial_n5r65")
 script = ExtResource("1_n5r65")
 object_id = "wall"
 display_name = "Static Wall"
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=495671658]
+position = Vector2(8.000004, 6.0000153)
+scale = Vector2(0.19921875, 0.20117185)
+texture = ExtResource("2_n5r65")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=403911116]
+position = Vector2(13.75, -2.5)
 shape = SubResource("RectangleShape2D_wall")
 
 [node name="Visual" type="Node2D" parent="." unique_id=524782367]
+visible = false
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Visual" unique_id=1407016805]
+visible = false
 offset_left = -100.0
 offset_top = -20.0
 offset_right = 100.0
 offset_bottom = 20.0
-texture = ExtResource("2_47avc")
+texture = ExtResource("2_n5r65")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
+metadata/_edit_use_anchors_ = true

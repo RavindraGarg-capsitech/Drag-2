@@ -1,13 +1,10 @@
 [gd_scene format=3 uid="uid://cgcgc2623qvii"]
 
-[ext_resource type="Texture2D" uid="uid://b4liuk8e2pmgi" path="res://Assests/Sprites/single/UI/basket.jpg" id="1_0oyuu"]
 [ext_resource type="Script" uid="uid://bf4t563ve0mbd" path="res://Scripts/Objects/Basket.gd" id="1_rdlr3"]
+[ext_resource type="Texture2D" uid="uid://3htc1k4df2av" path="res://Assests/Sprites/single/UI/Net 1.png" id="2_rdlr3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
-size = Vector2(70, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_backboard"]
-size = Vector2(16, 110)
+size = Vector2(96, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rim_left"]
 radius = 6.0
@@ -21,24 +18,21 @@ collision_mask = 2
 script = ExtResource("1_rdlr3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2075562011]
-position = Vector2(0, 5)
-texture = ExtResource("1_0oyuu")
+position = Vector2(6.000001, -18)
+scale = Vector2(1.2989691, 1.1958762)
+texture = ExtResource("2_rdlr3")
 
 [node name="GoalTriggerShape" type="CollisionShape2D" parent="." unique_id=132557230]
-position = Vector2(4, 5)
+position = Vector2(2, -50)
 shape = SubResource("RectangleShape2D_trigger")
 
 [node name="RimColliders" type="StaticBody2D" parent="." unique_id=536603111]
 collision_mask = 2
 
-[node name="BackboardShape" type="CollisionShape2D" parent="RimColliders" unique_id=1020278285]
-position = Vector2(-81, -20)
-shape = SubResource("RectangleShape2D_backboard")
-
 [node name="LeftRimShape" type="CollisionShape2D" parent="RimColliders" unique_id=601329550]
-position = Vector2(-52, -2)
+position = Vector2(-34, 0)
 shape = SubResource("CircleShape2D_rim_left")
 
 [node name="RightRimShape" type="CollisionShape2D" parent="RimColliders" unique_id=2142711099]
-position = Vector2(60, -2)
+position = Vector2(44, -3)
 shape = SubResource("CircleShape2D_rim_right")

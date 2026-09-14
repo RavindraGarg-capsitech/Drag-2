@@ -1,19 +1,56 @@
-extends Control
+extends CanvasLayer
 
-
-## Game root scene controller for "Drag to Goal".
-## Coordinates the Camera2D and LevelRoot world (1920 x 1080 landscape design space).
-
-@onready var level_root: LevelRoot = $LevelRoot
-
-var initial_level_data: Resource = null
 
 func _ready() -> void:
-	if initial_level_data != null and initial_level_data is LevelData:
-		print("[Game] Loading level: ", initial_level_data.level_name)
-		LevelLoader.load_level(initial_level_data, level_root)
-		for obj in level_root.get_level_objects():
-			obj.set_editor_mode(false)
 
 
-						  # ADDED
+	# GamePlay UI itself does not need to process while paused.
+	# Only the dynamically spawned PausePanel needs to work while paused.
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+
+
+# =========================================================
+# PAUSE
+# =========================================================
+
+func _on_pause_btn_pressed() -> void:
+	GameService.haptics.light()
+
+	# Pause the gameplay first.
+	get_tree().paused = true
+
+	# Spawn PausePanel only when needed.
+	var pause_panel: Control = GameService.ui.push_packed(
+		GameConfig.PAUSE_PANEL_SCENE
+	)
+
+	if pause_panel == null:
+		# If spawning failed, don't leave the game paused.
+		get_tree().paused = false
+
+func _on_back_btn_pressed() -> void:
+	_resume()
+
+func _on_resume_btn_pressed() -> void:
+	_resume()
+
+func _on_restart_btn_pressed() -> void:
+	GameService.haptics.light()
+	GameBus.level_restarted.emit(_current_level_index())
+	get_tree().paused = false
+	hide()
+
+func _on_home_btn_pressed() -> void:
+	GameService.haptics.light()
+	hide()
+	get_tree().paused = false
+	GameBus.home_requested.emit()
+
+func _resume() -> void:
+	GameService.haptics.light()
+	hide()
+	get_tree().paused = false
+	GameBus.game_resumed.emit()
+
+func _current_level_index() -> int:
+	return GameService.save.get_value(GameConfig.SAVE_KEY_LAST_LEVEL, 1)

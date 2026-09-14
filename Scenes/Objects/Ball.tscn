@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcsybaqmg3itx"]
 
-[ext_resource type="Texture2D" uid="uid://jsb6uhsa2pdy" path="res://Assests/Sprites/single/UI/ball.jpg" id="1_d6xnw"]
+[ext_resource type="Texture2D" uid="uid://cjlb50251wl2f" path="res://Assests/Sprites/single/UI/Ball 1.png" id="2_d6xnw"]
 [ext_resource type="Script" uid="uid://ohhmqjcjfy18" path="res://Scripts/Objects/Ball.gd" id="2_o20im"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ball"]
@@ -20,8 +20,10 @@ max_contacts_reported = 4
 script = ExtResource("2_o20im")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2081455183]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_d6xnw")
+position = Vector2(1.4999971, 1.5000002)
+scale = Vector2(1.1406249, 1.109375)
+texture = ExtResource("2_d6xnw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1773755433]
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_ball")

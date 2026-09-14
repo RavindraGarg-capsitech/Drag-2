@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="Darg2Goal"
-run/main_scene="uid://cqnx6bvoamdjy"
+run/main_scene="uid://bg6utjn72xoc0"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameService="*uid://b56qodmw2ewro"
+BackendService="*uid://weww656iahn0"
+GameConfig="*uid://cnhw0px76aiiu"
+GameBus="*uid://v5f7t4xs1cyu"
 
 [display]
 

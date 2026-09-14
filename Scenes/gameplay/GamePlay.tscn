@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://tamplxghdx2j"]
+
+[ext_resource type="Texture2D" uid="uid://ccbcqyie0n78h" path="res://Assests/Sprites/Backgrounds/Home Screen.png" id="1_d8jbk"]
+[ext_resource type="Script" uid="uid://54p42r287isv" path="res://Scripts/Controllers/game_play_logic.gd" id="1_gwlfs"]
+[ext_resource type="PackedScene" uid="uid://b1f24sanrm1wx" path="res://Scenes/gameplay/LevelRoot.tscn" id="3_e4jfp"]
+[ext_resource type="Script" uid="uid://cj71m84tc5xuv" path="res://Scripts/Controllers/game_play_ui.gd" id="4_6btb1"]
+[ext_resource type="Texture2D" uid="uid://dnvrjefobx10r" path="res://Assests/Sprites/single/UI Button/Hint.png" id="4_hjuxx"]
+[ext_resource type="Texture2D" uid="uid://disa5ntuhiefw" path="res://Assests/Sprites/single/UI Button/Pause.png" id="5_8kvrh"]
+[ext_resource type="Texture2D" uid="uid://bcankia70n4m0" path="res://Assests/Sprites/single/UI Button/OvalButn 1.png" id="6_6btb1"]
+[ext_resource type="LabelSettings" uid="uid://swujueweufe4" path="res://Resources/FontSave/Text.tres" id="7_ddoq5"]
+
+[node name="GamePlay" type="Control" unique_id=1793949179]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gwlfs")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1836767267]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_d8jbk")
+expand_mode = 1
+
+[node name="LevelRoot" parent="." unique_id=1318773563 instance=ExtResource("3_e4jfp")]
+
+[node name="GamePlay UI" type="CanvasLayer" parent="." unique_id=1911830517]
+script = ExtResource("4_6btb1")
+
+[node name="GamePlayBtns" type="Control" parent="GamePlay UI" unique_id=581339279]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HintBtn" type="TextureButton" parent="GamePlay UI/GamePlayBtns" unique_id=671610885]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -368.0
+offset_top = 34.0
+offset_right = -218.0
+offset_bottom = 184.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_hjuxx")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PauseBtn" type="TextureButton" parent="GamePlay UI/GamePlayBtns" unique_id=1805871846]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_top = 34.0
+offset_right = -42.0
+offset_bottom = 184.0
+grow_horizontal = 0
+texture_normal = ExtResource("5_8kvrh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ReleaseBtn" type="TextureButton" parent="GamePlay UI/GamePlayBtns" unique_id=551390284]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.064
+anchor_top = 0.846
+anchor_right = 0.13700001
+anchor_bottom = 0.897
+offset_left = 0.11999512
+offset_top = 0.32000732
+offset_right = 0.95999146
+offset_bottom = 0.23999023
+grow_vertical = 0
+texture_normal = ExtResource("6_6btb1")
+
+[node name="Label" type="Label" parent="GamePlay UI/GamePlayBtns/ReleaseBtn" unique_id=1295003418]
+layout_mode = 0
+offset_right = 135.0
+offset_bottom = 45.0
+text = "Release"
+label_settings = ExtResource("7_ddoq5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinPanel" type="Control" parent="GamePlay UI" unique_id=958598919]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="GamePlay UI/GamePlayBtns/PauseBtn" to="GamePlay UI" method="_on_pause_btn_pressed"]

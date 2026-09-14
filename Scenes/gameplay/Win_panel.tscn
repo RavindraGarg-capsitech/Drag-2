@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://cv7jywuj28r0i"]
+
+[ext_resource type="Script" uid="uid://bjwcmjhhh7cbb" path="res://Scripts/Controllers/win_panel.gd" id="1_pxfyq"]
+[ext_resource type="Texture2D" uid="uid://bg7rkoxa8a2r7" path="res://Assests/Sprites/Backgrounds/BlurBg.png" id="2_1254j"]
+[ext_resource type="Texture2D" uid="uid://bjgdsi1rdvii5" path="res://Assests/Sprites/Backgrounds/SettingPopUp.png" id="3_d2kbt"]
+[ext_resource type="FontFile" uid="uid://bgvo8vcqd2ox0" path="res://Assests/Fonts/Pencilant Script.ttf" id="4_b5ful"]
+[ext_resource type="Texture2D" uid="uid://bkt45sge5si4r" path="res://Assests/Sprites/single/UI Button/Close 1.png" id="5_b7e3f"]
+[ext_resource type="Texture2D" uid="uid://cbgwy5npj4sig" path="res://Assests/Sprites/single/UI Button/RestartBtn.png" id="6_qa1ps"]
+[ext_resource type="Texture2D" uid="uid://giukgg11s7lp" path="res://Assests/Sprites/single/UI Button/Home 2.png" id="7_i2o4s"]
+[ext_resource type="Texture2D" uid="uid://dbs7yb0dr0ko" path="res://Assests/Sprites/single/UI Button/ResumeBtn (2).png" id="8_2snl8"]
+[ext_resource type="Texture2D" uid="uid://bnbfd8a6ew6p4" path="res://Assests/Sprites/single/UI/LStar.png" id="9_hvrxq"]
+[ext_resource type="Texture2D" uid="uid://keo34xsyyi4m" path="res://Assests/Sprites/single/UI/MStar.png" id="10_6g1at"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p4byt"]
+line_spacing = -10.0
+font = ExtResource("4_b5ful")
+font_size = 35
+font_color = Color(0, 0, 0, 1)
+
+[node name="WinPanel" type="Control" unique_id=981853729]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pxfyq")
+
+[node name="BlurBg" type="TextureRect" parent="." unique_id=1567155572]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1254j")
+expand_mode = 1
+
+[node name="WinPopUp" type="TextureRect" parent="BlurBg" unique_id=1355193387]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -250.0
+offset_right = 375.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_d2kbt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WinLabel" type="Label" parent="BlurBg/WinPopUp" unique_id=18682383]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.0
+offset_top = 10.0
+offset_right = 77.0
+offset_bottom = 111.0
+grow_horizontal = 2
+text = "Level
+complete"
+label_settings = SubResource("LabelSettings_p4byt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackBtn" type="TextureButton" parent="BlurBg/WinPopUp" unique_id=1091795543]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 35.0
+offset_right = 28.0
+offset_bottom = 135.0
+grow_horizontal = 0
+texture_normal = ExtResource("5_b7e3f")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ButtonHBox" type="HBoxContainer" parent="BlurBg/WinPopUp" unique_id=1686328828]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = 60.0
+offset_right = 232.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="RestartBtn" type="TextureButton" parent="BlurBg/WinPopUp/ButtonHBox" unique_id=553453055]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture_normal = ExtResource("6_qa1ps")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HomeBtn" type="TextureButton" parent="BlurBg/WinPopUp/ButtonHBox" unique_id=656965412]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture_normal = ExtResource("7_i2o4s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="NextBtn" type="TextureButton" parent="BlurBg/WinPopUp/ButtonHBox" unique_id=1325942678]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture_normal = ExtResource("8_2snl8")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Stars" type="Control" parent="BlurBg/WinPopUp" unique_id=855664892]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Leftstar" type="TextureRect" parent="BlurBg/WinPopUp/Stars" unique_id=440467835]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -70.0
+offset_right = -42.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("9_hvrxq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Leftstar2" type="TextureRect" parent="BlurBg/WinPopUp/Stars" unique_id=1118764831]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 52.0
+offset_top = -70.0
+offset_right = 219.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("9_hvrxq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CenterStar" type="TextureRect" parent="BlurBg/WinPopUp/Stars" unique_id=1141233822]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -131.0
+offset_right = 100.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("10_6g1at")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="BlurBg/WinPopUp/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="BlurBg/WinPopUp/ButtonHBox/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="BlurBg/WinPopUp/ButtonHBox/HomeBtn" to="." method="_on_home_btn_pressed"]
+[connection signal="pressed" from="BlurBg/WinPopUp/ButtonHBox/NextBtn" to="." method="_on_next_btn_pressed"]
