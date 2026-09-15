@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dj75pqfe0at07"]
+
+[ext_resource type="Texture2D" uid="uid://dxkb5yo732yny" path="res://Assests/Sprites/single/UI/HintBox.png" id="1_f3hvo"]
+[ext_resource type="Script" uid="uid://dxmwacgwe187h" path="res://Scripts/Objects/HintBox.gd" id="2_ce31x"]
+
+[node name="HintBox" type="Node2D" unique_id=272280613]
+script = ExtResource("2_ce31x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1217804400]
+scale = Vector2(0.24, 0.2)
+texture = ExtResource("1_f3hvo")

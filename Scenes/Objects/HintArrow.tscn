@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://brkvwluic2pxw"]
+
+[ext_resource type="Texture2D" uid="uid://vggsdqxvfn1a" path="res://Assests/Sprites/single/UI/HintArrow.png" id="1_xfea0"]
+[ext_resource type="Script" uid="uid://dgjp01spslix1" path="res://Scripts/Objects/HintArrow.gd" id="2_383t3"]
+
+[node name="HintArrow" type="Node2D" unique_id=1298317191]
+script = ExtResource("2_383t3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=794679831]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("1_xfea0")

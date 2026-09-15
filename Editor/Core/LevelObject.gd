@@ -80,7 +80,7 @@ func get_selection_bounds() -> Rect2:
 			
 	var spr: Sprite2D = get_node_or_null("Sprite2D") as Sprite2D
 	if spr != null and spr.texture != null:
-		var sz := spr.texture.get_size()
+		var sz := spr.texture.get_size() * spr.scale.abs()
 		return Rect2(-sz / 2.0, sz)
 		
 	return Rect2(Vector2(-32, -32), Vector2(64, 64))
