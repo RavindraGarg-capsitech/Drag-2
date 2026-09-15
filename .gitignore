@@ -1,3 +1,90 @@
-.godot/ 
-android/build/ 
-*.tmp 
+# =========================================================
+# GODOT 4.x + Android + Team-safe Gitignore
+# =========================================================
+
+# Godot generated imports/cache
+.import/
+*.import
+.cache/
+.editor/
+*.godot/
+
+# Export settings
+export.cfg
+# Keep export_presets.cfg shared
+
+# Mono / C#
+.mono/
+data_*/
+*.csproj
+*.sln
+
+# Temp / logs / crashes
+*.tmp
+*.temp
+*.log
+crashlog.txt
+
+# Backup files
+*~
+*.bak
+*.orig
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Export folders
+html5/
+ios/
+PebbleTrace-iOS_Release/
+PEBBB/
+
+# Android generated build files
+android/build/**
+.gradle/
+android/local.properties
+
+# Build outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+*.prof
+*.dm
+
+# Generated Java / binaries
+*.class
+*.jar
+*.so
+*.dll
+*.dylib
+*.exe
+*.pdb
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+
+# Python / tooling
+__pycache__/
+*.pyc
+
+# Firebase / sensitive config
+# Uncomment if you do NOT want credentials committed
+# google-services.json
+# GoogleService-Info.plist
+
+# Optional: Android Studio / Gradle
+.gradle/
+build/
+addons/
