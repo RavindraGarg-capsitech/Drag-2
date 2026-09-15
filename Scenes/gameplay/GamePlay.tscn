@@ -102,4 +102,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[connection signal="pressed" from="GamePlay UI/GamePlayBtns/HintBtn" to="GamePlay UI" method="_on_hint_btn_pressed"]
 [connection signal="pressed" from="GamePlay UI/GamePlayBtns/PauseBtn" to="GamePlay UI" method="_on_pause_btn_pressed"]
