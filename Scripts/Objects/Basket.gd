@@ -36,7 +36,10 @@ func _on_body_entered(body: Node2D) -> void:
 		_is_goal_triggered = true
 		goal_reached.emit(body)
 
+#func reset_to_initial_state() -> void:
+	#super.reset_to_initial_state()
+	#_is_goal_triggered = false
+
 func reset_to_initial_state() -> void:
 	super.reset_to_initial_state()
 	_is_goal_triggered = false
-
