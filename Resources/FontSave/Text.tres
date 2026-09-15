@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" format=3 uid="uid://swujueweufe4"]
 
-[ext_resource type="FontFile" uid="uid://bgvo8vcqd2ox0" path="res://Assests/Fonts/Pencilant Script.ttf" id="1_g8vg1"]
+[ext_resource type="FontFile" uid="uid://b0ngchceryfdc" path="res://Assests/Fonts/Pencilant Script.ttf" id="1_g8vg1"]
 
 [resource]
 font = ExtResource("1_g8vg1")
