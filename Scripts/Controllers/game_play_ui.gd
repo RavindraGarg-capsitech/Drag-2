@@ -28,3 +28,12 @@ func _on_pause_btn_pressed() -> void:
 	if pause_panel == null:
 		# Prevent the game from remaining paused if spawning failed.
 		get_tree().paused = false
+
+
+# ============================================================
+# HINT
+# ============================================================
+
+func _on_hint_btn_pressed() -> void:
+	GameService.haptics.light()
+	GameBus.hint_requested.emit()

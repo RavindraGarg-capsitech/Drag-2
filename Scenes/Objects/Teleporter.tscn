@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://mibix5sowyt8"]
+
+[ext_resource type="Script" uid="uid://5wxngbv5axhi" path="res://Scripts/Objects/Teleporter.gd" id="1_tg43j"]
+[ext_resource type="Texture2D" uid="uid://beykfu442bsta" path="res://Assests/Sprites/single/UI/Teleport.png" id="2_7qfqt"]
+
+[node name="Teleporter" type="Node2D" unique_id=272280613]
+script = ExtResource("1_tg43j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1217804400]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_7qfqt")

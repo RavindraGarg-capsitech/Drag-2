@@ -22,6 +22,7 @@ signal home_requested
 signal play_requested
 signal level_requested(level_index: int)
 signal gameplay_started(level_data: Resource)
+signal hint_requested
 
 
 # ============================================================

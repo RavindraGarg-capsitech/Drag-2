@@ -7,6 +7,7 @@ extends UIController
 
 var initial_level_data: Resource = null
 var _level_completed: bool = false
+var _hint_used: bool = false
 
 
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 	GameBus.level_restarted.connect(_on_level_restarted)
 	GameBus.level_completed.connect(_on_level_completed)
 	GameBus.level_requested.connect(_on_level_requested)
+	GameBus.hint_requested.connect(_on_hint_requested)
 
 	if initial_level_data != null and initial_level_data is LevelData:
 		_load_level(initial_level_data)
@@ -47,6 +49,37 @@ func _load_level(level_data: Resource) -> void:
 
 		if obj is Basket:
 			_connect_basket(obj)
+
+	_apply_initial_hint_state()
+
+
+# ============================================================
+# HINT SYSTEM
+# ============================================================
+
+func _apply_initial_hint_state() -> void:
+	_hint_used = false
+	for obj in level_root.get_level_objects():
+		if _is_hint_object(obj):
+			obj.visible = false
+
+
+func _on_hint_requested() -> void:
+	if _hint_used:
+		return
+
+	_hint_used = true
+
+	for obj in level_root.get_level_objects():
+		if _is_hint_object(obj):
+			obj.visible = true
+
+
+func _is_hint_object(obj: LevelObject) -> bool:
+	if obj == null:
+		return false
+	var info: Dictionary = ObjectRegistry.get_object_info(obj.object_id)
+	return info.get("category", "") == "Hint"
 
 
 # ============================================================

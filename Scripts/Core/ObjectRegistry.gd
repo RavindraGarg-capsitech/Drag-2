@@ -46,6 +46,12 @@ const DEFAULT_REGISTRY: Dictionary = {
 		"display_name": "Hint Arrow",
 		"scene_path": "res://Scenes/Objects/HintArrow.tscn",
 		"category": "Hint"
+	},
+	"teleporter": {
+		"id": "teleporter",
+		"display_name": "Teleporter",
+		"scene_path": "res://Scenes/Objects/Teleporter.tscn",
+		"category": "Core"
 	}
 
 }
