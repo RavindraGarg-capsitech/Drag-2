@@ -1,8 +1,9 @@
 [gd_resource type="LabelSettings" format=3 uid="uid://swujueweufe4"]
 
-[ext_resource type="FontFile" uid="uid://b0ngchceryfdc" path="res://Assests/Fonts/Pencilant Script.ttf" id="1_g8vg1"]
+[ext_resource type="FontFile" uid="uid://j3ovgxvh5qts" path="res://Assests/Fonts/Pencilant Script.ttf" id="1_g8vg1"]
 
 [resource]
+line_spacing = -18.0
 font = ExtResource("1_g8vg1")
 font_size = 25
 font_color = Color(0, 0, 0, 1)
