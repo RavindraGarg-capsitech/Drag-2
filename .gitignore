@@ -43,8 +43,7 @@ desktop.ini
 # Export folders
 html5/
 ios/
-PebbleTrace-iOS_Release/
-PEBBB/
+
 
 # Android generated build files
 android/build/**
@@ -67,6 +66,7 @@ android/local.properties
 *.dylib
 *.exe
 *.pdb
+*.uid
 
 # Archives
 *.zip

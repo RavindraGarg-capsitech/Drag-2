@@ -34,7 +34,20 @@ const DEFAULT_REGISTRY: Dictionary = {
 		"display_name": "Physics Box",
 		"scene_path": "res://Scenes/Objects/Box.tscn",
 		"category": "Physics"
+	},
+	"hintbox": {
+		"id": "hintbox",
+		"display_name": "Hint Box",
+		"scene_path": "res://Scenes/Objects/HintBox.tscn",
+		"category": "Hint"
+	},
+	"hintarrow": {
+		"id": "hintarrow",
+		"display_name": "Hint Arrow",
+		"scene_path": "res://Scenes/Objects/HintArrow.tscn",
+		"category": "Hint"
 	}
+
 }
 
 static var _custom_registry: Dictionary = {}
