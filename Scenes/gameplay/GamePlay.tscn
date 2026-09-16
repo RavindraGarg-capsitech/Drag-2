@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://tamplxghdx2j"]
 
-[ext_resource type="Texture2D" uid="uid://ccbcqyie0n78h" path="res://Assests/Sprites/Backgrounds/Home Screen.png" id="1_d8jbk"]
+[ext_resource type="Texture2D" uid="uid://b7y4nud7kp1mi" path="res://Assests/Sprites/Backgrounds/Home Screen.png" id="1_d8jbk"]
 [ext_resource type="Script" uid="uid://54p42r287isv" path="res://Scripts/Controllers/game_play_logic.gd" id="1_gwlfs"]
 [ext_resource type="PackedScene" uid="uid://b1f24sanrm1wx" path="res://Scenes/gameplay/LevelRoot.tscn" id="3_e4jfp"]
 [ext_resource type="Script" uid="uid://cj71m84tc5xuv" path="res://Scripts/Controllers/game_play_ui.gd" id="4_6btb1"]
-[ext_resource type="Texture2D" uid="uid://dnvrjefobx10r" path="res://Assests/Sprites/single/UI Button/Hint.png" id="4_hjuxx"]
-[ext_resource type="Texture2D" uid="uid://disa5ntuhiefw" path="res://Assests/Sprites/single/UI Button/Pause.png" id="5_8kvrh"]
-[ext_resource type="Texture2D" uid="uid://bcankia70n4m0" path="res://Assests/Sprites/single/UI Button/OvalButn 1.png" id="6_6btb1"]
+[ext_resource type="Texture2D" uid="uid://b1way156qp8eh" path="res://Assests/Sprites/single/UI Button/Hint.png" id="4_hjuxx"]
+[ext_resource type="Texture2D" uid="uid://dlqw6yccc6g01" path="res://Assests/Sprites/single/UI Button/Pause.png" id="5_8kvrh"]
+[ext_resource type="Texture2D" uid="uid://bapgvqs4n4jhw" path="res://Assests/Sprites/single/UI Button/OvalButn 1.png" id="6_6btb1"]
 [ext_resource type="LabelSettings" uid="uid://swujueweufe4" path="res://Resources/FontSave/Text.tres" id="7_ddoq5"]
 
 [node name="GamePlay" type="Control" unique_id=1793949179]

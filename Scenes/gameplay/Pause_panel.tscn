@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bhuiawa3uj2dy"]
 
 [ext_resource type="Script" uid="uid://csrhgplandxwh" path="res://Scripts/Controllers/pause_panel.gd" id="1_ju2n3"]
-[ext_resource type="Texture2D" uid="uid://bg7rkoxa8a2r7" path="res://Assests/Sprites/Backgrounds/BlurBg.png" id="2_ju2n3"]
-[ext_resource type="Texture2D" uid="uid://bjgdsi1rdvii5" path="res://Assests/Sprites/Backgrounds/SettingPopUp.png" id="3_2xduo"]
+[ext_resource type="Texture2D" uid="uid://c4ix8gqwn3ol3" path="res://Assests/Sprites/Backgrounds/BlurBg.png" id="2_ju2n3"]
+[ext_resource type="Texture2D" uid="uid://c0a4v6noeargq" path="res://Assests/Sprites/Backgrounds/SettingPopUp.png" id="3_2xduo"]
 [ext_resource type="LabelSettings" uid="uid://ci4444vnl8r5q" path="res://Resources/FontSave/Heading.tres" id="4_whrsq"]
-[ext_resource type="Texture2D" uid="uid://bkt45sge5si4r" path="res://Assests/Sprites/single/UI Button/Close 1.png" id="5_ju2n3"]
-[ext_resource type="Texture2D" uid="uid://cbgwy5npj4sig" path="res://Assests/Sprites/single/UI Button/RestartBtn.png" id="6_2xduo"]
-[ext_resource type="Texture2D" uid="uid://giukgg11s7lp" path="res://Assests/Sprites/single/UI Button/Home 2.png" id="7_whrsq"]
-[ext_resource type="Texture2D" uid="uid://dbs7yb0dr0ko" path="res://Assests/Sprites/single/UI Button/ResumeBtn (2).png" id="8_lbc3y"]
+[ext_resource type="Texture2D" uid="uid://cl71yxrwtndic" path="res://Assests/Sprites/single/UI Button/Close 1.png" id="5_ju2n3"]
+[ext_resource type="Texture2D" uid="uid://it3ax4e27rgo" path="res://Assests/Sprites/single/UI Button/RestartBtn.png" id="6_2xduo"]
+[ext_resource type="Texture2D" uid="uid://c8obcundsui3j" path="res://Assests/Sprites/single/UI Button/Home 2.png" id="7_whrsq"]
+[ext_resource type="Texture2D" uid="uid://k3w8i0m7ncc0" path="res://Assests/Sprites/single/UI Button/ResumeBtn (2).png" id="8_lbc3y"]
 
 [node name="PausePanel" type="Control" unique_id=981853729]
 layout_mode = 3
