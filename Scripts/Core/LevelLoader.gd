@@ -62,7 +62,7 @@ static func load_level(
 			continue
 
 		var obj: LevelObject = (
-			EditorObjectRegistry.instantiate_object(
+			ObjectRegistry.instantiate_object(
 				obj_data.object_id
 			)
 		)

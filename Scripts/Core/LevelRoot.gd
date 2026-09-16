@@ -26,7 +26,10 @@ func get_design_size() -> Vector2:
 ## Objects themselves are NOT repositioned.
 ## Camera2D is NOT used.
 func _fit_level_to_viewport() -> void:
-	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var vp := get_viewport()
+	if vp == null:
+		return
+	var viewport_size: Vector2 = vp.get_visible_rect().size
 	var design_size: Vector2 = get_design_size()
 
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:

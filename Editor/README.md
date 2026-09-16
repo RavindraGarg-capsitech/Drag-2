@@ -1,10 +1,52 @@
-# 🛠️ Portable Developer Level Editor Module
+# 🛠️ Developer Level Editor & Architecture Guide
 
-A 100% self-contained, data-driven, and completely portable Developer Level Editor for Godot 4.x.
+A data-driven, visual Level Editor toolset for Godot 4.x, designed for creating, inspecting, editing, play-testing, and serializing 2D physics levels.
 
 ---
 
-## 📂 Folder Structure
+## 🏗️ Architectural Boundary & Folder Responsibility
+
+To ensure clean architecture and prevent game runtime code from depending on editor tools, the project strictly enforces a **unidirectional dependency rule**:
+
+```text
+┌────────────────────────────────────────────────────────┐
+│               GAMEPLAY RUNTIME SYSTEMS                 │
+│         (Scripts/Controllers/, Scenes/gameplay/)       │
+└───────────────────────────┬────────────────────────────┘
+							│
+							▼
+┌────────────────────────────────────────────────────────┐
+│                SHARED RUNTIME / CORE                   │
+│         (Scripts/Core/, Resources/Levels/)             │
+│  - ObjectRegistry.gd  : Canonical game object catalog  │
+│  - LevelLoader.gd     : Generic level builder/loader   │
+│  - LevelRoot.gd       : Responsive viewport container  │
+│  - LevelObject.gd     : Base class for all game props  │
+│  - LevelData.gd       : Complete level resource schema │
+│  - LevelObjectData.gd : Serialized object schema       │
+└───────────────────────────▲────────────────────────────┘
+							│
+							│ (Allowed tool dependency)
+┌───────────────────────────┴────────────────────────────┐
+│                  EDITOR-ONLY TOOLS                     │
+│                     (res://Editor/)                    │
+│  - LevelEditor        : Coordinator & shortcut router  │
+│  - EditorUI           : Sidebar, status bar, palette   │
+│  - EditorObjectRegistry: Editor-only palette adapter   │
+│  - EditorObjectManager: Canvas spawn/drag/duplicate    │
+│  - EditorPropertyMgr  : Dynamic reflection inspector   │
+│  - EditorSaveManager  : Level serializer & disk I/O    │
+│  - EditorSelectionMgr : Bounding box & gizmo handles   │
+└────────────────────────────────────────────────────────┘
+```
+
+### The Golden Rule
+> **Runtime gameplay must NEVER depend on `res://Editor/`.**  
+> Editor systems may depend on shared Core systems, but runtime gameplay must never import, preload, or call anything under `Editor/`.
+
+---
+
+## 📂 Folder Breakdown
 
 ```text
 res://Editor/
@@ -18,131 +60,120 @@ res://Editor/
 │   ├── LevelLoader.gd            # Generic level loader for LevelData
 │   └── LevelRoot.gd              # Self-contained world design space container
 ├── Scenes/
-│   └── LevelEditor.tscn          # Main Level Editor scene (0 external dependencies)
+│   └── LevelEditor.tscn          # Main Level Editor tool scene
 ├── Scripts/
 │   ├── LevelEditor.gd            # Editor coordinator, shortcut handling & play-test
 │   ├── EditorInputManager.gd     # Auto-registers required InputMap actions on startup
-│   ├── EditorObjectRegistry.gd   # Dynamic object registry & scene factory
+│   ├── EditorObjectRegistry.gd   # Dynamic object registry & scene factory for editor palette
 │   ├── EditorObjectManager.gd    # Spawning, dragging, duplicate & delete logic
-│   ├── EditorSelectionManager.gd # Generic bounds hit testing & visual outline
-│   ├── EditorPropertyManager.gd  # Dynamic property inspector for custom properties
+│   ├── EditorSelectionManager.gd # Generic bounds hit testing & visual outline drawing
+│   ├── EditorPropertyManager.gd  # Dynamic property inspector for custom properties & UndoRedo
 │   ├── EditorSaveManager.gd      # Configurable .res level saving & loading
 │   └── EditorUI.gd               # Sidebar UI, dynamic palette & slide animations
 ├── UI/
 │   ├── EditorPanel.tscn          # Right-side sidebar panel container
 │   ├── ObjectButton.tscn         # Reusable palette button component
 │   └── PropertyPanel.tscn        # Property inspector container
-└── README.md                     # Documentation & migration guide
+└── README.md                     # Documentation & usage guide
 ```
 
 ---
 
-## ➕ How to Add an Object to the Object Palette
+## 🔄 Runtime Flow: LevelLoader & Object Discovery
 
-> 💡 **For a complete copy-pasteable demo code example, see [ADD_OBJECT_GUIDE.md](file:///c:/Users/deadp/OneDrive/Documents/drag-2-goal/Editor/ADD_OBJECT_GUIDE.md).**
+### 1. The Object Registry Flow
+- **`ObjectRegistry.gd`** (`res://Scripts/Core/ObjectRegistry.gd`):  
+  The **canonical single source of truth** for all game objects. Maps stable string IDs (e.g. `"ball"`, `"spring_rope"`) to their `.tscn` packed scenes.
+- **`EditorObjectRegistry.gd`** (`res://Editor/Scripts/EditorObjectRegistry.gd`):  
+  An **editor-only adapter**. On editor startup, it discovers definitions from `ObjectRegistry.gd` or `EditorConfig.tres` and populates the editor palette with buttons.
 
-### 1. Locate or Create Your Game Object
-Make sure your game object scene exists outside the `Editor/` folder (e.g. `res://Scenes/Objects/Ball.tscn`, `res://Scenes/Objects/SpringRope.tscn`, or `res://Scenes/Objects/Fan.tscn`).
-
-### 2. Make Your Script Extend `LevelObject`
-In your object script (e.g. `res://Scripts/Objects/Ball.gd`), extend `LevelObject` and implement property getters/setters:
-
-```gdscript
-class_name Ball
-extends LevelObject
-
-@export var ball_mass: float = 1.0
-@export var bounce: float = 0.75
-@export var friction: float = 0.3
-
-func _init() -> void:
-	object_id = "ball"
-	display_name = "Basketball"
-
-func get_custom_properties() -> Dictionary:
-	return {
-		"ball_mass": ball_mass,
-		"bounce": bounce,
-		"friction": friction
-	}
-
-func apply_custom_properties(props: Dictionary) -> void:
-	if props.has("ball_mass"): ball_mass = props["ball_mass"]
-	if props.has("bounce"): bounce = props["bounce"]
-	if props.has("friction"): friction = props["friction"]
+### 2. The Level Loading Flow (`LevelLoader.gd`)
+Whenever a level is loaded (either at runtime or during in-editor preview):
+```text
+Level Resource (.res file or LevelData resource)
+	│
+	▼
+LevelLoader.load_level(level_res_or_path, target_root: LevelRoot)
+	│
+	├── 1. Clear existing level objects from target_root
+	├── 2. Apply level design dimensions (1920x1080)
+	├── 3. For each object in level_data.objects:
+	│      ├── Query ObjectRegistry for scene_path
+	│      ├── Instantiate object scene (inherits LevelObject)
+	│      ├── Apply position, rotation, scale, is_locked
+	│      └── Apply custom properties via obj.apply_custom_properties()
+	└── 4. Center and scale target_root to fit current viewport via _fit_level_to_viewport()
 ```
 
-### 3. Register the Object in `ObjectRegistry.gd`
-Open `res://Scripts/Core/ObjectRegistry.gd` and add the object definition:
-
-```gdscript
-"ball": {
-	"id": "ball",
-	"display_name": "Basketball",
-	"scene_path": "res://Scenes/Objects/Ball.tscn",
-	"category": "Core"
-},
-"spring_rope": {
-	"id": "spring_rope",
-	"display_name": "Spring Rope",
-	"scene_path": "res://Scenes/Objects/SpringRope.tscn",
-	"category": "Interactive"
-}
-```
-
-*(Or register dynamically in code with:*
-`EditorObjectRegistry.register_object("ball", "res://Scenes/Objects/Ball.tscn", "Basketball", "Core")`*)*
-
-### 4. Run the Editor
-Open and run **`res://Editor/Scenes/LevelEditor.tscn`** (Press **F6**):
-- Press **`E`** to open the panel.
-- The button **`+ Basketball`** appears automatically!
-- Clicking it spawns the real `Ball.tscn` from `res://Scenes/Objects/Ball.tscn` into `LevelRoot`.
-
 ---
 
-## 📝 Files to Edit vs Files NOT to Edit
+## 🎮 How to Use the Level Editor
 
-| What You Want to Do | File You NEED to Edit | Files You DO NOT Need to Edit |
-|---|---|---|
-| **Add a new object** | Your new `MyObject.tscn` / `MyObject.gd` & `ObjectRegistry.gd` | ❌ `LevelEditor.gd`<br>❌ `EditorUI.gd`<br>❌ `EditorPanel.tscn`<br>❌ `EditorObjectManager.gd`<br>❌ `EditorSaveManager.gd` |
-| **Add a custom property** | Only your object script (`get_custom_properties()`) | ❌ Any editor script (inspector adapts dynamically) |
+### Opening the Editor
+1. In the Godot FileSystem dock, open **`res://Editor/Scenes/LevelEditor.tscn`**.
+2. Press **F6** (Play Current Scene).
 
----
-
-## 🚀 How to Detach & Use in Any Godot Project
-
-1. **ZIP `res://Editor/`**: Copy or zip the single folder `res://Editor/`.
-2. **Paste into New Project**: Paste `res://Editor/` into the destination project root.
-3. **Extend `LevelObject`**: Have placeable objects in the new project extend `LevelObject`.
-4. **Register Objects**: Call `EditorObjectRegistry.register_object(...)` or configure `EditorConfig.tres`.
-5. **Run Editor**: Launch `res://Editor/Scenes/LevelEditor.tscn` (Press **F6**).
-
----
-
-## ⚙️ Zero Required `project.godot` Setup
-
-The editor includes `EditorInputManager.gd` which **automatically registers all required InputMap actions in memory on startup** if they are missing from your project:
+### Keyboard & Mouse Shortcuts
+The editor automatically registers all required InputMap actions in memory on startup:
 
 | Action | Default Input / Key |
 |---|---|
 | **Toggle Editor Panel** | **`E` Key** (or top-right `🛠️ Panel [E]` button) |
 | **Select Object** | Left Click on object in level |
 | **Move Object** | Left Click + Drag on selected object |
-| **Deselect** | Right Click / `Escape` |
-| **Rotate Selected (+15°)** | `R` Key (or Inspector input) |
+| **Deselect** | Right Click or `Escape` |
+| **Rotate Selected (+15°)** | `R` Key (or numeric input in Inspector) |
 | **Duplicate Selected** | `Ctrl + D` (or Duplicate button) |
 | **Delete Selected** | `Delete` / `Backspace` (or Delete button) |
+| **Undo / Redo** | `Ctrl + Z` / `Ctrl + Y` (or `Ctrl + Shift + Z`) |
 | **Play Test / Stop Test** | `Spacebar` / `F5` (or Play Test button) |
 
 ---
 
-## 💾 Level Resource Format (.res)
+## ➕ How to Add a New Object to the Editor Palette
 
-Levels are saved as native Godot binary/text resources (`.res`) in `res://Resources/Levels/Level{ID}.res`.
+### 1. Create Your Game Object Scene
+Create your scene outside `Editor/` (e.g. `res://Scenes/Objects/MyNewProp.tscn`).
 
-To load a level in your runtime game:
+### 2. Make Your Script Extend `LevelObject`
+In your object script, extend `LevelObject` and implement `get_custom_properties()` and `apply_custom_properties()`:
+
 ```gdscript
-var level_data: LevelData = ResourceLoader.load("res://Resources/Levels/Level001.res")
-LevelLoader.load_level(level_data, my_level_root)
+class_name MyNewProp
+extends LevelObject
+
+@export var bounce_power: float = 500.0
+@export var is_active: bool = true
+
+func _init() -> void:
+	object_id = "my_new_prop"
+	display_name = "My New Prop"
+
+func get_custom_properties() -> Dictionary:
+	return {
+		"bounce_power": bounce_power,
+		"is_active": is_active
+	}
+
+func apply_custom_properties(props: Dictionary) -> void:
+	if props.has("bounce_power"): bounce_power = props["bounce_power"]
+	if props.has("is_active"): is_active = props["is_active"]
 ```
+
+### 3. Register in `ObjectRegistry.gd`
+Add your object to `DEFAULT_REGISTRY` inside `res://Scripts/Core/ObjectRegistry.gd`:
+
+```gdscript
+"my_new_prop": {
+	"id": "my_new_prop",
+	"display_name": "My New Prop",
+	"scene_path": "res://Scenes/Objects/MyNewProp.tscn",
+	"category": "Interactive"
+}
+```
+
+### 4. Run the Editor
+Open `res://Editor/Scenes/LevelEditor.tscn` (Press **F6**):
+- Press **`E`** to open the palette.
+- **`+ My New Prop`** appears automatically in the category group.
+- Click to spawn and configure its properties in real-time.
